@@ -29,6 +29,7 @@ class EventsListViewModel @Inject constructor(private val ticketMasterRepository
                     }
                 }
                 is RequestResponse.OnError -> {
+                    _eventsListData.value = listOf()
                     when (requestResponse.error) {
                         is OnErrorType.OnFaultError -> {
                             //TODO: Update UI, Show alert dialog or similar

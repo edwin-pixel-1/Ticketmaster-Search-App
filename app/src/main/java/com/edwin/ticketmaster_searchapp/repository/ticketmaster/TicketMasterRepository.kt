@@ -15,9 +15,14 @@ class TicketMasterRepository @Inject constructor(
     private val networkManager: NetworkManager,
 ) {
 
-    suspend fun loadEvents(): RequestResponse = withContext(Dispatchers.IO) {
+    /**
+     * This method is the responsible to decided what source should be taken the data. remotedSource or localSource
+     * @param pageSize: This parameter is optional, and define the max number of items to load.
+     * TODO: In the future, the @param pageSize can be loaded as part of a Global App Configuration
+     */
+    suspend fun loadEvents(pageSize: Int = 100): RequestResponse = withContext(Dispatchers.IO) {
         if (networkManager.isConnected()) {
-            remoteStorage.loadEvents(100).apply {
+            remoteStorage.loadEvents(pageSize).apply {
                 if (this is RequestResponse.OnSuccess) {
                     localStorage.putSerializedData(LAST_QUERY_EVENTS_KEY, response)
                 }
@@ -30,7 +35,7 @@ class TicketMasterRepository @Inject constructor(
     }
 
     companion object {
-        private const val LAST_QUERY_EVENTS_KEY = "LAST_QUERY_EVENTS"
+        const val LAST_QUERY_EVENTS_KEY = "LAST_QUERY_EVENTS"
     }
 
 }
