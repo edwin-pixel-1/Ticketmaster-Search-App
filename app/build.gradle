@@ -65,9 +65,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
     implementation "androidx.preference:preference-ktx:$versions.androidPreference"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     // Java/Kotlin language implementation
-    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0-1.4-M3")
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
 
     //Glide

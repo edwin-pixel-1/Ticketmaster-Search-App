@@ -156,8 +156,13 @@ open class BaseEventContent {
 
 @Serializable
 open class GenericErrorResponse(
+    @SerializedName("status")
     val code: Int? = null,
+
+    @SerializedName("error")
     val error: String? = null,
+
+    @SerializedName("message")
     val description: String? = null
 )
 
